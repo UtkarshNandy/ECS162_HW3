@@ -287,7 +287,10 @@ function fetchAndProcessArticles() {
           }, console.error);
 
         commentBtn.addEventListener("click", () => {
-          if (!auth.currentUser) return;
+          if (!auth.currentUser) {
+            window.location.href = "login.html";
+            return;
+          } 
           const sidebar = document.getElementById("comments-sidebar");
           sidebar.classList.add("open");
           setupNewCommentUI(articleId);
