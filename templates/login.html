@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log In</title>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyD6LqafFwbPRcdXsFI0eYDzF-WkeDf4Spo",
+        authDomain: "ecs162-hw3.firebaseapp.com",
+        projectId: "ecs162-hw3",
+        storageBucket: "ecs162-hw3.firebasestorage.app",
+        messagingSenderId: "269236241186",
+        appId: "1:269236241186:web:96f74ab5a5decbf31fdb7b",
+      };
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+    </script>
+
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        font-family: sans-serif;
+      }
+      h1 {
+        margin-bottom: 1rem;
+      }
+      input {
+        margin: 0.5rem 0;
+        padding: 0.5rem;
+        width: 250px;
+        box-sizing: border-box;
+      }
+      button {
+        margin-top: 1rem;
+        padding: 0.6rem 1.2rem;
+        cursor: pointer;
+      }
+      #msg {
+        margin-top: 1rem;
+        color: red;
+        min-height: 1.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Log In</h1>
+    <input id="email" type="email" placeholder="Email" />
+    <input id="password" type="password" placeholder="Password" />
+    <button id="btn-login">Log In</button>
+    <div id="msg"></div>
+
+    <script>
+      const btn = document.getElementById("btn-login");
+      const msg = document.getElementById("msg");
+      const email = document.getElementById("email");
+      const pass = document.getElementById("password");
+
+      btn.addEventListener("click", async () => {
+        msg.textContent = "";
+        try {
+          await auth.signInWithEmailAndPassword(email.value, pass.value);
+          window.location = "index.html";
+        } catch (err) {
+          msg.textContent = err.message;
+        }
+      });
+
+      auth.onAuthStateChanged((user) => {
+        if (user) window.location = "app.html";
+      });
+    </script>
+  </body>
+</html>
