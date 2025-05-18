@@ -77,6 +77,9 @@ function fetchAndProcessArticles() {
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { getApiKey, fetchAndProcessArticles };
 } else {
+  document.getElementById("log-in").addEventListener("click", () => {
+    window.location.href = "login.html";
+  });
   // in browser
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", fetchAndProcessArticles);
