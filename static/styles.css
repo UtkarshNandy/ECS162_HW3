@@ -1,0 +1,86 @@
+/*styles for the header -> nyt logo*/
+.header-container {
+  display: flex;
+  width: auto;
+  height: 75px;
+  justify-content: center;
+  border-bottom: 1px solid;
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 500px);
+  place-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.grid-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.grid-container:nth-child(3n-1) {
+  border-left: 1px solid;
+  border-right: 1px solid;
+}
+
+.article-container {
+  width: 95%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  overflow: hidden;
+  border-bottom: 1px solid;
+}
+
+.article-image {
+  width: 90%;
+  height: 45%;
+  margin-top: 5px;
+  object-fit: contain;
+}
+
+.article-paragraph {
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 0;
+}
+.article-header {
+  text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .main-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #image-grid .grid-container {
+    border: none;
+  }
+
+  #image-grid .grid-container:nth-child(odd) {
+    border-right: 1px solid;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  #image-grid .grid-container {
+    border-right: none; /* Remove the border for all grid containers */
+  }
+
+  #image-grid .grid-container:nth-child(odd) {
+    border-right: none; /* Explicitly remove the odd child border at this screen width */
+  }
+}
