@@ -1,4 +1,6 @@
-// static/main.js
+const MODERATOR_UIDS = ["cLUfz8EfpTfsuwq9CSSlW0P0Nza2"];
+const REMOVED_TEXT = "COMMENT REMOVED BY MODERATOR!";
+let isModerator = false;
 
 function getApiKey() {
   return fetch("/api/key")
@@ -230,12 +232,11 @@ function fetchAndProcessArticles() {
     return Promise.resolve();
   }
 
-  // return the promise chain
   return getApiKey()
     .then((apiKey) => {
       const BASE_URL = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${encodeURIComponent(
-        `Davis OR Sacramento`
-      )}&api-key=${apiKey}&page=${0}`;
+        "Davis OR Sacramento"
+      )}&api-key=${apiKey}&page=0`;
       return fetch(BASE_URL);
     })
     .then((response) => response.json())
@@ -276,7 +277,6 @@ function fetchAndProcessArticles() {
         paragraph.textContent = article.abstract || "no description";
         paragraph.classList.add("article-paragraph");
         articleContainer.appendChild(paragraph);
-
         const commentBtn = document.createElement("button");
         commentBtn.classList.add("comment-button");
         const articleId = article._id;
@@ -285,6 +285,7 @@ function fetchAndProcessArticles() {
           .onSnapshot((snap) => {
             commentBtn.innerHTML = `💬<span class="comment-count">${snap.size}</span>`;
           }, console.error);
+
         commentBtn.addEventListener("click", () => {
           if (!auth.currentUser) return;
           const sidebar = document.getElementById("comments-sidebar");
@@ -303,13 +304,12 @@ function fetchAndProcessArticles() {
     });
 }
 
-// export for node tests
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { getApiKey, fetchAndProcessArticles };
 } else {
   function onReady() {
     auth.onAuthStateChanged((user) => {
-      //isModerator = user && MODERATOR_UIDS.includes(user.uid);
+      isModerator = user && MODERATOR_UIDS.includes(user.uid);
       const btn =
         document.getElementById("log-in") ||
         document.getElementById("account-btn");

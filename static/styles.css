@@ -77,6 +77,24 @@
   cursor: pointer;
 }
 
+.comment-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 5px;
+  border: 0.5px solid #ccc;
+  background-color: white;
+  font-size: 0.85rem;
+  cursor: pointer;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+}
+
+.comment-button .comment-count {
+  margin-left: 4px;
+}
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -116,30 +134,13 @@
 
   transform: translateX(100%);
   transition: transform 0.3s ease;
-  z-index: 1001; /* above the account sidebar */
+  z-index: 1001;
   display: flex;
   flex-direction: column;
 }
 
 .comments-sidebar.open {
   transform: translateX(0);
-}
-.comment-button {
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 8px;
-  border-radius: 5px;
-  border: 0.5px solid #ccc;
-  background-color: white;
-  font-size: 0.85rem;
-  cursor: pointer;
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-}
-
-.comment-button .comment-count {
-  margin-left: 4px;
 }
 
 .comments-list {
@@ -158,6 +159,79 @@
 }
 .comment-body {
   margin: 0.25rem 0 0;
+}
+
+.replies-list {
+  margin-left: 16px;
+  padding-left: 12px;
+  border-left: 2px solid #ddd;
+}
+
+.reply {
+  margin-bottom: 0.75rem;
+}
+
+.reply-user {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.reply-body {
+  margin: 0.25rem 0 0;
+}
+
+.reply-btn {
+  background: none;
+  border: none;
+  color: #0a66c2;
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  padding: 0;
+}
+
+.send-reply-btn {
+  margin-left: 8px;
+}
+
+.delete-comment-btn {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  padding: 0;
+  float: right;
+}
+
+.subreplies-list {
+  margin-left: 16px;
+  padding-left: 12px;
+  border-left: 2px solid #eee;
+}
+
+.subreply {
+  overflow: auto;
+}
+
+.subreply .delete-comment-btn {
+  float: right;
+  margin-left: 8px;
+  margin-top: 0rem;
+}
+
+.removed-text {
+  color: #999;
+}
+
+.redact-btn {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
 }
 
 @media screen and (max-width: 1024px) {
@@ -185,10 +259,10 @@
   }
 
   #image-grid .grid-container {
-    border-right: none; /* Remove the border for all grid containers */
+    border-right: none;
   }
 
   #image-grid .grid-container:nth-child(odd) {
-    border-right: none; /* Explicitly remove the odd child border at this screen width */
+    border-right: none;
   }
 }
