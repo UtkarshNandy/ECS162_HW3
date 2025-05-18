@@ -142,6 +142,24 @@
   margin-left: 4px;
 }
 
+.comments-list {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 1rem;
+}
+
+.comment {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+.comment-user {
+  font-weight: bold;
+}
+.comment-body {
+  margin: 0.25rem 0 0;
+}
+
 @media screen and (max-width: 1024px) {
   .main-container {
     grid-template-columns: repeat(2, 1fr);
