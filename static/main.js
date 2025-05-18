@@ -1,7 +1,10 @@
 // static/main.js
 
 function getApiKey() {
-  return fetch("/api/key").then((response) => response.json()).then((data) => data.apiKey).catch((err) => {
+  return fetch("/api/key")
+    .then((response) => response.json())
+    .then((data) => data.apiKey)
+    .catch((err) => {
       console.error("API fetch error", err);
       throw new Error("API fetch error");
     });
@@ -14,15 +17,12 @@ function fetchAndProcessArticles() {
     return Promise.resolve();
   }
 
-  // return the promise chain 
+  // return the promise chain
   return getApiKey()
     .then((apiKey) => {
-      const BASE_URL =
-        "https://api.nytimes.com/svc/search/v2/articlesearch.json" +
-        "?fq=timesTag.location:(%22Davis%22%20%22Sacramento%22)" +
-        "&sort=newest" +
-        "&page=0" +
-        `&api-key=${apiKey}`;
+      const BASE_URL = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${encodeURIComponent(
+        `Davis OR Sacramento`
+      )}&api-key=${apiKey}&page=${0}`;
       return fetch(BASE_URL);
     })
     .then((response) => response.json())

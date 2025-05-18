@@ -5,6 +5,13 @@
   height: 75px;
   justify-content: center;
   border-bottom: 1px solid;
+  align-items: center;
+  position: relative;
+}
+
+#nyt-logo {
+  height: 100%;
+  width: auto;
 }
 
 .main-container {
@@ -57,6 +64,19 @@
   text-align: center;
 }
 
+.auth-btn {
+  width: 75px;
+  height: 30px;
+  background-color: #4268a6;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1024px) {
   .main-container {
     grid-template-columns: repeat(2, 1fr);
@@ -78,6 +98,11 @@
 
   #image-grid .grid-container {
     border-right: none; /* Remove the border for all grid containers */
+  }
+
+  #nyt-logo {
+    height: 75%;
+    width: 50%;
   }
 
   #image-grid .grid-container:nth-child(odd) {
