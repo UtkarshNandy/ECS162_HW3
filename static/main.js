@@ -77,13 +77,55 @@ function fetchAndProcessArticles() {
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { getApiKey, fetchAndProcessArticles };
 } else {
-  document.getElementById("log-in").addEventListener("click", () => {
-    window.location.href = "login.html";
-  });
-  // in browser
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", fetchAndProcessArticles);
-  } else {
+  function onReady() {
+    auth.onAuthStateChanged((user) => {
+      //isModerator = user && MODERATOR_UIDS.includes(user.uid);
+      const btn =
+        document.getElementById("log-in") ||
+        document.getElementById("account-btn");
+      if (user) {
+        btn.textContent = "Account";
+        btn.style.backgroundColor = "white";
+        btn.style.color = "black";
+        btn.style.border = "1px solid black";
+        btn.style.cursor = "pointer";
+        btn.id = "account-btn";
+        btn.replaceWith(btn.cloneNode(true));
+        document.getElementById("account-btn").addEventListener("click", () => {
+          document.getElementById("account-sidebar").classList.add("open");
+        });
+        document.getElementById("user-email").textContent = user.email;
+      } else {
+        btn.textContent = "Log In";
+        btn.style.backgroundColor = "#0a66c2";
+        btn.style.color = "white";
+        btn.style.border = "none";
+        btn.style.cursor = "pointer";
+        btn.id = "log-in";
+        btn.replaceWith(btn.cloneNode(true));
+        document.getElementById("log-in").addEventListener("click", () => {
+          window.location.href = "login.html";
+        });
+        document.getElementById("account-sidebar").classList.remove("open");
+      }
+    });
+
+    document
+      .getElementById("btn-logout")
+      .addEventListener("click", () => auth.signOut());
+    document.getElementById("close-sidebar").addEventListener("click", () => {
+      document.getElementById("account-sidebar").classList.remove("open");
+    });
+    document.getElementById("close-comments").addEventListener("click", () => {
+      document.getElementById("comments-sidebar").classList.remove("open");
+    });
+
     fetchAndProcessArticles();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", onReady);
+  } else {
+    onReady();
   }
 }

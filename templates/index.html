@@ -5,9 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../static/styles.css" />
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyD6LqafFwbPRcdXsFI0eYDzF-WkeDf4Spo",
+        authDomain: "ecs162-hw3.firebaseapp.com",
+        projectId: "ecs162-hw3",
+        storageBucket: "ecs162-hw3.firebasestorage.app",
+        messagingSenderId: "269236241186",
+        appId: "1:269236241186:web:96f74ab5a5decbf31fdb7b",
+      };
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+    </script>
   </head>
   <body>
     <header>
+      <div id="account-sidebar" class="sidebar">
+        <button id="close-sidebar" class="close-btn">×</button>
+        <p>Welcome, <span id="user-email"></span></p>
+        <button id="btn-logout">Log Out</button>
+      </div>
+
+      <div id="comments-sidebar" class="sidebar comments-sidebar">
+        <div class="sidebar-header">
+          <h2 id="comments-sidebar-title">Comments</h2>
+          <button id="close-comments" class="close-btn">×</button>
+        </div>
+        <div id="new-comment"></div>
+        <div id="comments-list" class="comments-list"></div>
+      </div>
+
       <div class="header-container">
         <img id="nyt-logo" src="/static/assets/nyt-logo.png" />
         <button id="log-in" class="btn auth-btn">LOG IN</button>
