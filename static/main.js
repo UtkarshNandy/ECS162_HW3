@@ -64,6 +64,23 @@ function fetchAndProcessArticles() {
         paragraph.classList.add("article-paragraph");
         articleContainer.appendChild(paragraph);
 
+        const commentBtn = document.createElement("button");
+        commentBtn.classList.add("comment-button");
+        const articleId = article._id;
+        db.collection("comments")
+          .where("articleId", "==", articleId)
+          .onSnapshot((snap) => {
+            commentBtn.innerHTML = `💬<span class="comment-count">${snap.size}</span>`;
+          }, console.error);
+        commentBtn.addEventListener("click", () => {
+          if (!auth.currentUser) return;
+          const sidebar = document.getElementById("comments-sidebar");
+          sidebar.classList.add("open");
+          setupNewCommentUI(articleId);
+          subscribeToComments(articleId);
+        });
+        articleContainer.appendChild(commentBtn);
+
         gridContainer.appendChild(articleContainer);
         imageGrid.appendChild(gridContainer);
       });

@@ -104,6 +104,44 @@
   cursor: pointer;
 }
 
+.comments-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 280px;
+  background: #fff;
+  padding: 24px;
+  box-sizing: border-box;
+
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 1001; /* above the account sidebar */
+  display: flex;
+  flex-direction: column;
+}
+
+.comments-sidebar.open {
+  transform: translateX(0);
+}
+.comment-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 5px;
+  border: 0.5px solid #ccc;
+  background-color: white;
+  font-size: 0.85rem;
+  cursor: pointer;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+}
+
+.comment-button .comment-count {
+  margin-left: 4px;
+}
+
 @media screen and (max-width: 1024px) {
   .main-container {
     grid-template-columns: repeat(2, 1fr);
