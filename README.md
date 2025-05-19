@@ -2,7 +2,6 @@
 
 To run application:
 
-- cd hw2-app
 - python3 app.py
 - go to http://127.0.0.1:8000
 
@@ -17,3 +16,10 @@ Jest:
 
 - cd hw2-app
 - npx jest --runTestsByPath tests/main.test.js
+
+Cypress:
+
+- npx cypress run --spec "cypress/integration/auth_spec.js"
+
+Node modules:
+- npm init
