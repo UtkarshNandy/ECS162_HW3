@@ -1,5 +1,10 @@
 # ECS162_HW2
 
+Logins:
+  1. username: 'admin', password: 'password'
+  2. username: 'monitor', password: 'mpassword'
+  3. username: 'user', password: 'upassword'
+
 To run application:
 
 - python3 app.py
