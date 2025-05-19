@@ -123,7 +123,7 @@
 }
 
 .comments-sidebar {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   height: 100vh;
@@ -137,6 +137,13 @@
   z-index: 1001;
   display: flex;
   flex-direction: column;
+}
+
+.comments-sidebar .close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  float: none;
 }
 
 .comments-sidebar.open {
@@ -154,11 +161,48 @@
   border-bottom: 1px solid #ddd;
   padding-bottom: 0.5rem;
 }
+
+.comment-controls {
+  display: none;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.comment-cancel-btn,
+.comment-submit-btn {
+  padding: 2px 12px;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+}
+
+.comment-cancel-btn {
+  background: none;
+  color: #000;
+  border: 1px solid #999;
+}
+
+.comment-submit-btn {
+  background: #4268a6;
+  color: #fff;
+}
+
 .comment-user {
   font-weight: bold;
 }
 .comment-body {
   margin: 0.25rem 0 0;
+}
+
+#new-comment {
+  width: 100%;
+}
+
+#new-comment .comment-input {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .replies-list {
@@ -178,6 +222,14 @@
 
 .reply-body {
   margin: 0.25rem 0 0;
+}
+
+.reply-wrapper .reply-input,
+.reply-wrapper textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.5rem;
 }
 
 .reply-btn {

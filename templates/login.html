@@ -54,7 +54,7 @@
   </head>
   <body>
     <h1>Log In</h1>
-    <input id="email" type="email" placeholder="Email" />
+    <input id="email" type="text" placeholder="Email or username" />
     <input id="password" type="password" placeholder="Password" />
     <button id="btn-login">Log In</button>
     <div id="msg"></div>
@@ -62,13 +62,22 @@
     <script>
       const btn = document.getElementById("btn-login");
       const msg = document.getElementById("msg");
-      const email = document.getElementById("email");
-      const pass = document.getElementById("password");
+      const emailInput = document.getElementById("email");
+      const passInput = document.getElementById("password");
 
       btn.addEventListener("click", async () => {
         msg.textContent = "";
+        let ident = emailInput.value.trim();
+        if (!ident) {
+          msg.textContent = "Please enter a username or email";
+          return;
+        }
+
+        if (!ident.includes("@")) {
+          ident = ident + "@gmail.com";
+        }
         try {
-          await auth.signInWithEmailAndPassword(email.value, pass.value);
+          await auth.signInWithEmailAndPassword(ident, passInput.value);
           window.location = "index.html";
         } catch (err) {
           msg.textContent = err.message;
