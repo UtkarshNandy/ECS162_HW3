@@ -1,4 +1,4 @@
-# ECS162_HW2
+# ECS162_HW3
 
 Logins:
   1. username: 'admin', password: 'password'
